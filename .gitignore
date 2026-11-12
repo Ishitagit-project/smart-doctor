@@ -16,3 +16,7 @@ Desktop.ini
 # IDEs
 .vscode/
 .idea/
+
+# ML Department (kept separate in Ishika's repo)
+m1-model/
+
