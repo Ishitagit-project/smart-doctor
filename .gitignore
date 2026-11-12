@@ -20,3 +20,7 @@ Desktop.ini
 # ML Department (kept separate in Ishika's repo)
 m1-model/
 
+# Internal integration specs
+INTEGRATION_SPEC.md
+
+
