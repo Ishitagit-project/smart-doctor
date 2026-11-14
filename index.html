@@ -44,6 +44,9 @@
           <a href="#patient-dashboard" class="btn btn-secondary btn-sm" id="nav-user-indicator" style="display: none;" onclick="navigateTo('patient-dashboard')">
             <span>👤</span> John Doe
           </a>
+          <a href="#doctor-login" class="btn btn-ghost sign-in-btn" id="nav-doctor-btn" onclick="navigateTo('doctor-login')">
+            Doctor Portal
+          </a>
           <button class="btn btn-primary" onclick="navigateTo('assessment')">
             Book an Appointment
           </button>
@@ -93,7 +96,7 @@
                   Book an Appointment →
                 </button>
                 <button class="btn btn-secondary btn-lg" onclick="navigateTo('doctors')">
-                  Find a Doctor
+                  Meet Our Specialists
                 </button>
               </div>
 
@@ -222,6 +225,10 @@
                   <h4>24/7 Rapid Response</h4>
                   <p>Dedicated trauma and cardiac triage units operating round the clock.</p>
                 </div>
+                <div class="highlight-box">
+                  <h4>🤖 ML Clinical Triage Engine</h4>
+                  <p>In-house AI trained on thousands of cases to evaluate urgency and match specialists automatically.</p>
+                </div>
               </div>
             </div>
             <div>
@@ -229,7 +236,7 @@
                 <h3 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem; position: relative; z-index: 2;">CarePoint Central Hospital</h3>
                 <p style="color: var(--c-ice); margin-bottom: 1.5rem; position: relative; z-index: 2;">Modern Medical Campus & Diagnostic Complex</p>
                 <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9375rem; position: relative; z-index: 2;">
-                  <div>📍 45 Healthcare Boulevard, Medical District, Wing A-E</div>
+                  <div>📍 Plot 14, Institutional Area, Saket, New Delhi – 110017</div>
                   <div>📞 Emergency Desk: +91 1800 274 9999</div>
                   <div>⏰ OPD Hours: Mon – Sat (08:00 AM – 08:00 PM)</div>
                 </div>
@@ -293,6 +300,24 @@
                 Patients complete a 10-point clinical assessment that identifies symptoms requiring immediate clinical evaluation versus routine preventive checkups.
               </p>
             </div>
+            <div class="highlight-box" style="margin-bottom: 1.5rem; border-left: 4px solid var(--c-navy); background: #EEF2FF;">
+              <h4 style="color: var(--c-navy);">🤖 AI-Powered Smart Triage by CarePoint</h4>
+              <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.65;">
+                CarePoint Hospital uses an in-house <strong>Machine Learning (ML) model</strong> — trained on thousands of real clinical triage cases — to intelligently assess each patient's urgency level before an appointment is booked.
+              </p>
+              <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.65; margin-top: 0.5rem;">
+                Our AI engine, <strong>Smart Doctor</strong>, analyses 10 clinical parameters including primary health concern, symptom duration, pain intensity, neurological signs, and pre-existing conditions. It then:
+              </p>
+              <ul style="color: var(--text-muted); font-size: 0.875rem; margin-top: 0.5rem; padding-left: 1.25rem; line-height: 1.8;">
+                <li>Classifies the case as <strong>Very Urgent</strong>, <strong>Moderate</strong>, or <strong>Routine</strong></li>
+                <li>Automatically matches the patient to the <strong>right specialist</strong></li>
+                <li>Assigns a <strong>prioritised appointment slot</strong> — no manual selection needed</li>
+                <li>Gives the patient a choice of <strong>tomorrow or later</strong> based on real doctor availability</li>
+              </ul>
+              <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.75rem; font-style: italic;">
+                Developed in collaboration with the hospital's clinical informatics and data science team. For emergencies, please call 1800-CAREPOINT or visit the nearest emergency unit.
+              </p>
+            </div>
             <button class="btn btn-primary" onclick="navigateTo('assessment')">
               Start Health Assessment →
             </button>
@@ -300,13 +325,10 @@
           <div>
             <div class="card" style="padding: 2.5rem;">
               <h4 style="font-size: 1.25rem; font-weight: 800; color: var(--c-navy); margin-bottom: 1.25rem;">Hospital Contact & Hours</h4>
-              <p style="font-size: 0.9375rem; color: var(--text-muted); margin-bottom: 1rem;"><strong>Main Campus:</strong> 45 Healthcare Boulevard, Medical District</p>
+              <p style="font-size: 0.9375rem; color: var(--text-muted); margin-bottom: 1rem;"><strong>Main Campus:</strong> Plot 14, Institutional Area, Saket, New Delhi – 110017</p>
               <p style="font-size: 0.9375rem; color: var(--text-muted); margin-bottom: 1rem;"><strong>Emergency Hotline:</strong> 1800-CAREPOINT (Toll Free)</p>
               <p style="font-size: 0.9375rem; color: var(--text-muted); margin-bottom: 1rem;"><strong>Email Support:</strong> appointments@carepoint.hospital</p>
               <p style="font-size: 0.9375rem; color: var(--text-muted); margin-bottom: 1.5rem;"><strong>Operating Schedule:</strong> 24/7 Emergency & Inpatient | 08:00 AM – 08:00 PM OPD</p>
-              <button class="btn btn-secondary btn-block" onclick="navigateTo('doctor-login')">
-                Doctor Portal Access
-              </button>
             </div>
           </div>
         </div>
@@ -682,12 +704,12 @@
           <form onsubmit="handleDoctorLogin(event)">
             <div class="form-group">
               <label for="doc-login-id">Email / Doctor ID</label>
-              <input type="text" id="doc-login-id" class="form-input" placeholder="e.g. dr.sharma@carepoint.hospital" value="dr.sharma@carepoint.hospital" required>
+              <input type="text" id="doc-login-id" class="form-input" placeholder="e.g. doctor1@hospital.com" value="doctor1@hospital.com" required>
             </div>
 
             <div class="form-group">
               <label for="doc-login-pass">Password</label>
-              <input type="password" id="doc-login-pass" class="form-input" placeholder="Enter password" value="doctorpass" required>
+              <input type="password" id="doc-login-pass" class="form-input" placeholder="Enter password" value="doctor123" required>
             </div>
 
             <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 1rem;">
@@ -696,7 +718,7 @@
           </form>
 
           <div class="auth-demo-shortcut">
-            <span>Demo: Dr. Rahul Sharma (Cardiologist)</span>
+            <span>Demo: Dr. Meera Iyer (Cardiologist)</span>
             <button class="btn btn-secondary btn-sm" onclick="handleDoctorLogin()">Auto Fill & Sign In</button>
           </div>
 
@@ -756,8 +778,8 @@
           <div id="doc-view-dashboard">
             <div class="doc-top-bar">
               <div>
-                <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--c-navy);">Good morning, Dr. Sharma</h1>
-                <p style="color: var(--c-steel);">Lead Cardiologist • Department of Cardiovascular Medicine</p>
+                <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--c-navy);">Good morning, Dr. Iyer</h1>
+                <p style="color: var(--c-steel);">Lead Cardiologist • Department of Cardiology</p>
               </div>
               <span class="badge ice">Hospital Date: 10 Nov 2026</span>
             </div>
@@ -930,7 +952,7 @@
           <h4>CarePoint Hospital</h4>
           <div class="footer-contact-item">
             <span>📍</span>
-            <span>45 Healthcare Boulevard, Medical District</span>
+            <span>Plot 14, Institutional Area, Saket, New Delhi – 110017</span>
           </div>
           <div class="footer-contact-item">
             <span>📞</span>
