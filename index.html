@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Doctor — CarePoint Hospital Appointment Platform</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000080'><path d='M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z'/></svg>">
+</head>
+<body>
+
+  <!-- Main Navigation Bar -->
+  <header class="main-header" id="main-nav-bar">
+    <div class="container">
+      <nav class="nav-wrap">
+        <!-- Brand -->
+        <a href="#home" class="brand-logo" onclick="navigateTo('home')">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+              <path d="M12 5v14"/>
+              <path d="M5 12h14"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">Smart Doctor</span>
+            <span class="brand-subtitle">by CarePoint Hospital</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link active" onclick="navigateTo('home')">Home</a></li>
+          <li><a href="#departments" class="nav-link" onclick="navigateTo('departments')">Departments</a></li>
+          <li><a href="#doctors" class="nav-link" onclick="navigateTo('doctors')">Doctors</a></li>
+          <li><a href="#about" class="nav-link" onclick="navigateTo('about')">About Us</a></li>
+        </ul>
+
+        <!-- Right Action Items -->
+        <div class="nav-actions">
+          <a href="#patient-login" class="btn btn-ghost sign-in-btn" id="nav-patient-btn" onclick="navigateTo('patient-login')">
+            Patient Sign In
+          </a>
+          <a href="#patient-dashboard" class="btn btn-secondary btn-sm" id="nav-user-indicator" style="display: none;" onclick="navigateTo('patient-dashboard')">
+            <span>👤</span> John Doe
+          </a>
+          <a href="#doctor-login" class="btn btn-ghost sign-in-btn" id="nav-doctor-btn" onclick="navigateTo('doctor-login')">
+            Doctor Portal
+          </a>
+          <button class="btn btn-primary" onclick="navigateTo('assessment')">
+            Book an Appointment
+          </button>
+          <button class="mobile-nav-toggle" id="mobile-menu-btn" aria-label="Toggle Navigation" onclick="toggleMobileMenu()">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu-drawer" style="display: none;" class="mobile-menu-drawer">
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
+        <li><a href="#home" onclick="toggleMobileMenu(); navigateTo('home')">Home</a></li>
+        <li><a href="#departments" onclick="toggleMobileMenu(); navigateTo('departments')">Departments</a></li>
+        <li><a href="#doctors" onclick="toggleMobileMenu(); navigateTo('doctors')">Doctors</a></li>
+        <li><a href="#about" onclick="toggleMobileMenu(); navigateTo('about')">About Us</a></li>
+        <li><a href="#patient-login" onclick="toggleMobileMenu(); navigateTo('patient-login')">Patient Sign In</a></li>
+        <li><a href="#doctor-login" onclick="toggleMobileMenu(); navigateTo('doctor-login')">Doctor Portal</a></li>
+      </ul>
+      <button class="btn btn-primary btn-block" onclick="toggleMobileMenu(); navigateTo('assessment')">
+        Book an Appointment
+      </button>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       MAIN CONTENT CONTAINER (SPA VIEWS)
+       ========================================================================= -->
+  <main id="app-root">
+
+    <!-- VIEW: HOME PAGE -->
+    <section id="view-home" class="spa-view active">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-content">
+              <h1 class="hero-headline">
+                Get the right care, at the right time.
+              </h1>
+              <p class="hero-desc">
+                Smart Doctor helps patients connect with the right doctor and appointment through a simple, intelligent healthcare booking experience.
+              </p>
+              <div class="hero-actions">
+                <button class="btn btn-primary btn-lg" onclick="navigateTo('assessment')">
+                  Book an Appointment →
+                </button>
+                <button class="btn btn-secondary btn-lg" onclick="navigateTo('doctors')">
+                  Meet Our Specialists
+                </button>
+              </div>
+
+              <div class="hero-stats">
+                <div class="hero-stat-item">
+                  <h4>9+</h4>
+                  <p>Specialists</p>
+                </div>
+                <div class="hero-stat-item">
+                  <h4>24/7</h4>
+                  <p>Emergency Triage</p>
+                </div>
+                <div class="hero-stat-item">
+                  <h4>99.4%</h4>
+                  <p>On-Time Care</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hero Photo Visual -->
+            <div class="hero-photo-container">
+              <div class="hero-photo-card">
+                <img src="assets/hero-consultation.jpg" alt="CarePoint Hospital In-person Doctor Consultation" class="hero-photo-img" loading="eager">
+                <div class="hero-photo-badge">
+                  <div class="photo-badge-icon">🩺</div>
+                  <div>
+                    <div class="photo-badge-title">CarePoint Hospital Specialists</div>
+                    <div class="photo-badge-sub">● Compassionate In-Person & Digital Care</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: How Smart Doctor Works (Dark Blue Theme) -->
+      <section class="section-py features-section" id="features-section">
+        <div class="container">
+          <div class="section-header features-header">
+            <span class="section-tag features-tag">Care Process</span>
+            <h2 class="section-title features-title">How Smart Doctor Works</h2>
+            <p class="section-desc features-desc">Our digital triage connects you with the appropriate medical specialist quickly and transparently in four simple steps.</p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card step-card-alt-1">
+              <div class="step-number">01</div>
+              <h3>Book an Appointment</h3>
+              <p>Start your appointment request with CarePoint Hospital from your phone or computer anytime.</p>
+            </div>
+
+            <div class="step-card step-card-alt-2">
+              <div class="step-number">02</div>
+              <h3>Complete a Quick Assessment</h3>
+              <p>Answer a few simple questions about your current condition, pain level, and duration of symptoms.</p>
+            </div>
+
+            <div class="step-card step-card-alt-1">
+              <div class="step-number">03</div>
+              <h3>Find Your Priority</h3>
+              <p>The system determines how soon you should be seen based on clinical urgency indicators.</p>
+            </div>
+
+            <div class="step-card step-card-alt-2">
+              <div class="step-number">04</div>
+              <h3>Choose Your Appointment</h3>
+              <p>Select an appropriate doctor and available appointment time slot that fits your schedule.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Our Departments -->
+      <section class="section-py" style="background-color: #fff; border-top: 1px solid var(--surface-border); border-bottom: 1px solid var(--surface-border);">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">Clinical Divisions</span>
+            <h2 class="section-title">Our Departments</h2>
+            <p class="section-desc">CarePoint Hospital houses state-of-the-art departments led by experienced clinicians across multiple specialties.</p>
+          </div>
+
+          <div class="departments-grid" id="departments-list">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Meet Our Specialists -->
+      <section class="section-py">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">Medical Team</span>
+            <h2 class="section-title">Meet Our Specialists</h2>
+            <p class="section-desc">Our board-certified physicians and surgeons bring decades of combined experience across acute and chronic healthcare.</p>
+          </div>
+
+          <div class="doctors-grid" id="doctors-list">
+            <!-- Rendered by JS -->
+          </div>
+
+          <div style="text-align: center; margin-top: 3rem;">
+            <button class="btn btn-secondary btn-lg" onclick="navigateTo('doctors')">
+              View All 10 Specialists →
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: About CarePoint Hospital -->
+      <section class="section-py about-section">
+        <div class="container">
+          <div class="about-grid">
+            <div>
+              <span class="section-tag">About CarePoint</span>
+              <h2 class="section-title">Compassionate Care Supported by Smart Technology</h2>
+              <p class="section-desc" style="margin-bottom: 1.5rem;">
+                CarePoint Hospital has been serving the regional community with clinical excellence and patient-first ethics. Smart Doctor is our latest patient-empowering initiative to reduce hospital waiting times and prioritize acute medical needs.
+              </p>
+              <div class="about-highlights">
+                <div class="highlight-box">
+                  <h4>ISO 9001 Certified</h4>
+                  <p>Highest standards of clinical hygiene, patient safety, and clinical ethics.</p>
+                </div>
+                <div class="highlight-box">
+                  <h4>24/7 Rapid Response</h4>
+                  <p>Dedicated trauma and cardiac triage units operating round the clock.</p>
+                </div>
+                <div class="highlight-box">
+                  <h4>🤖 ML Clinical Triage Engine</h4>
+                  <p>In-house AI trained on thousands of cases to evaluate urgency and match specialists automatically.</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="hospital-card-preview">
+                <h3 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem; position: relative; z-index: 2;">CarePoint Central Hospital</h3>
+                <p style="color: var(--c-ice); margin-bottom: 1.5rem; position: relative; z-index: 2;">Modern Medical Campus & Diagnostic Complex</p>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9375rem; position: relative; z-index: 2;">
+                  <div>📍 Plot 14, Institutional Area, Saket, New Delhi – 110017</div>
+                  <div>📞 Emergency Desk: +91 1800 274 9999</div>
+                  <div>⏰ OPD Hours: Mon – Sat (08:00 AM – 08:00 PM)</div>
+                </div>
+                <div style="margin-top: 2rem; position: relative; z-index: 2;">
+                  <button class="btn btn-accent btn-sm" onclick="navigateTo('assessment')">
+                    Schedule Your Consultation
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- VIEW: DEPARTMENTS FULL VIEW -->
+    <section id="view-departments" class="spa-view">
+      <div class="container section-py">
+        <div class="section-header">
+          <span class="section-tag">CarePoint Hospital</span>
+          <h2 class="section-title">All Medical Departments</h2>
+          <p class="section-desc">Select a department below to view specialists, working hours, and book a consultation.</p>
+        </div>
+        <div class="departments-grid" id="all-departments-grid">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW: DOCTORS FULL VIEW -->
+    <section id="view-doctors" class="spa-view">
+      <div class="container section-py">
+        <div class="section-header">
+          <span class="section-tag">Hospital Directory</span>
+          <h2 class="section-title">Our Medical Specialists</h2>
+          <p class="section-desc">Consult with experienced doctors across all 10 hospital departments.</p>
+        </div>
+        <div class="doctors-grid" id="all-doctors-grid">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW: ABOUT FULL VIEW -->
+    <section id="view-about" class="spa-view">
+      <div class="container section-py">
+        <div class="section-header">
+          <span class="section-tag">Hospital Overview</span>
+          <h2 class="section-title">About CarePoint Hospital</h2>
+          <p class="section-desc">A legacy of compassionate care, clinical excellence, and modern medical technology.</p>
+        </div>
+        <div class="about-grid">
+          <div>
+            <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--c-navy); margin-bottom: 1rem;">Our Mission & Vision</h3>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+              At CarePoint Hospital, our mission is to ensure every patient receives prompt, accurate, and empathetic medical attention. Smart Doctor was conceived to bridge the gap between patient symptoms and appropriate physician scheduling, ensuring urgent cases are not lost in standard waitlists.
+            </p>
+            <div class="highlight-box" style="margin-bottom: 1.5rem;">
+              <h4 style="color: var(--c-navy);">Digital Health Assessment Philosophy</h4>
+              <p style="color: var(--text-muted); font-size: 0.875rem;">
+                Patients complete a 10-point clinical assessment that identifies symptoms requiring immediate clinical evaluation versus routine preventive checkups.
+              </p>
+            </div>
+            <div class="highlight-box" style="margin-bottom: 1.5rem; border-left: 4px solid var(--c-navy); background: #EEF2FF;">
+              <h4 style="color: var(--c-navy);">🤖 AI-Powered Smart Triage by CarePoint</h4>
+              <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.65;">
+                CarePoint Hospital uses an in-house <strong>Machine Learning (ML) model</strong> — trained on thousands of real clinical triage cases — to intelligently assess each patient's urgency level before an appointment is booked.
+              </p>
+              <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.65; margin-top: 0.5rem;">
+                Our AI engine, <strong>Smart Doctor</strong>, analyses 10 clinical parameters including primary health concern, symptom duration, pain intensity, neurological signs, and pre-existing conditions. It then:
+              </p>
+              <ul style="color: var(--text-muted); font-size: 0.875rem; margin-top: 0.5rem; padding-left: 1.25rem; line-height: 1.8;">
+                <li>Classifies the case as <strong>Very Urgent</strong>, <strong>Moderate</strong>, or <strong>Routine</strong></li>
+                <li>Automatically matches the patient to the <strong>right specialist</strong></li>
+                <li>Assigns a <strong>prioritised appointment slot</strong> — no manual selection needed</li>
+                <li>Gives the patient a choice of <strong>tomorrow or later</strong> based on real doctor availability</li>
+              </ul>
+              <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.75rem; font-style: italic;">
+                Developed in collaboration with the hospital's clinical informatics and data science team. For emergencies, please call 1800-CAREPOINT or visit the nearest emergency unit.
+              </p>
+            </div>
+            <button class="btn btn-primary" onclick="navigateTo('assessment')">
+              Start Health Assessment →
+            </button>
+          </div>
+          <div>
+            <div class="card" style="padding: 2.5rem;">
+              <h4 style="font-size: 1.25rem; font-weight: 800; color: var(--c-navy); margin-bottom: 1.25rem;">Hospital Contact & Hours</h4>
+              <p style="font-size: 0.9375rem; color: var(--text-muted); margin-bottom: 1rem;"><strong>Main Campus:</strong> Plot 14, Institutional Area, Saket, New Delhi – 110017</p>
+              <p style="font-size: 0.9375rem; color: var(--text-muted); margin-bottom: 1rem;"><strong>Emergency Hotline:</strong> 1800-CAREPOINT (Toll Free)</p>
+              <p style="font-size: 0.9375rem; color: var(--text-muted); margin-bottom: 1rem;"><strong>Email Support:</strong> appointments@carepoint.hospital</p>
+              <p style="font-size: 0.9375rem; color: var(--text-muted); margin-bottom: 1.5rem;"><strong>Operating Schedule:</strong> 24/7 Emergency & Inpatient | 08:00 AM – 08:00 PM OPD</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW: PATIENT SIGN IN -->
+    <section id="view-patient-login" class="spa-view">
+      <div class="auth-wrapper">
+        <div class="auth-card">
+          <div class="auth-header">
+            <h2>Welcome Back</h2>
+            <p>Sign in to manage your appointments with CarePoint Hospital.</p>
+          </div>
+
+          <form onsubmit="handlePatientLogin(event)">
+            <div class="form-group">
+              <label for="login-email">Email / Phone</label>
+              <input type="text" id="login-email" class="form-input" placeholder="e.g. john.doe@example.com" value="john.doe@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <input type="password" id="login-password" class="form-input" placeholder="Enter password" value="password123" required>
+            </div>
+
+            <div class="form-meta">
+              <label style="display: flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+                <input type="checkbox" checked> Remember me
+              </label>
+              <a href="#" onclick="showToast('Password reset link sent to registered email.'); return false;">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block btn-lg">
+              Sign In
+            </button>
+          </form>
+
+          <div class="auth-demo-shortcut">
+            <span>Demo Patient: John Doe</span>
+            <button class="btn btn-secondary btn-sm" onclick="handlePatientLogin()">Auto Fill & Sign In</button>
+          </div>
+
+          <div class="auth-footer">
+            New to CarePoint Hospital?
+            <a href="#patient-signup" onclick="navigateTo('patient-signup')">Create an Account</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW: PATIENT SIGN UP -->
+    <section id="view-patient-signup" class="spa-view">
+      <div class="auth-wrapper">
+        <div class="auth-card auth-card-wide">
+          <div class="auth-header">
+            <h2>Create Your Account</h2>
+            <p>Register with CarePoint Hospital to book and manage consultations.</p>
+          </div>
+
+          <form onsubmit="handlePatientSignup(event)">
+            <div class="form-group">
+              <label for="signup-name">Full Name</label>
+              <input type="text" id="signup-name" class="form-input" placeholder="e.g. John Doe" value="John Doe" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="signup-email">Email Address</label>
+                <input type="email" id="signup-email" class="form-input" placeholder="name@example.com" value="john.doe@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="signup-phone">Phone Number</label>
+                <input type="tel" id="signup-phone" class="form-input" placeholder="+91 98765 43210" value="+91 98765 43210" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="signup-age">Age / Date of Birth</label>
+                <input type="number" id="signup-age" class="form-input" placeholder="Age" value="38" required>
+              </div>
+              <div class="form-group">
+                <label for="signup-gender">Gender</label>
+                <select id="signup-gender" class="form-select">
+                  <option value="Male" selected>Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" class="form-input" placeholder="Create password" value="password123" required>
+              </div>
+              <div class="form-group">
+                <label for="signup-conf-password">Confirm Password</label>
+                <input type="password" id="signup-conf-password" class="form-input" placeholder="Confirm password" value="password123" required>
+              </div>
+            </div>
+
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+              Note: Clinical medical history will be collected during your triage health assessment, not during account registration.
+            </p>
+
+            <button type="submit" class="btn btn-primary btn-block btn-lg">
+              Create Account
+            </button>
+          </form>
+
+          <div class="auth-footer">
+            Already have an account?
+            <a href="#patient-login" onclick="navigateTo('patient-login')">Sign In</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW: PATIENT DASHBOARD -->
+    <section id="view-patient-dashboard" class="spa-view">
+      <div class="container dash-layout">
+        <div class="dash-welcome">
+          <div>
+            <h1>Good morning, <span id="patient-greeting-name">John</span> 👋</h1>
+            <p>Welcome to your CarePoint patient appointment dashboard.</p>
+          </div>
+          <div style="display: flex; gap: 0.75rem;">
+            <button class="btn btn-secondary btn-sm" onclick="navigateTo('my-appointments')">My Appointments</button>
+            <button class="btn btn-secondary btn-sm" onclick="navigateTo('patient-profile')">Profile</button>
+            <button class="btn btn-ghost btn-sm" onclick="handleLogout()">Logout</button>
+          </div>
+        </div>
+
+        <!-- Big Feature Card: Book an Appointment / Start Assessment -->
+        <div class="triage-cta-card">
+          <div class="triage-cta-content">
+            <span class="triage-cta-pill">🩺 Clinical Assessment</span>
+            <h2>Book an Appointment</h2>
+            <p>Tell us about your current condition and find an appropriate appointment based on clinical priority.</p>
+            <button class="triage-cta-btn" onclick="navigateTo('assessment')">
+              Start Assessment →
+            </button>
+          </div>
+        </div>
+
+        <!-- Dashboard Two-Column Grid -->
+        <div class="dash-grid">
+          <!-- Upcoming Appointment Card -->
+          <div class="upcoming-card">
+            <div class="card-title-bar">
+              <h3>Upcoming Appointment</h3>
+              <a href="#my-appointments" onclick="navigateTo('my-appointments')" style="font-size: 0.8125rem; font-weight: 700; color: var(--c-navy);">View All →</a>
+            </div>
+            <div id="dash-upcoming-slot">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <!-- Quick Actions & Services -->
+          <div class="card">
+            <div class="card-title-bar">
+              <h3>Patient Services</h3>
+            </div>
+            <div class="quick-action-list">
+              <a href="#my-appointments" class="quick-action-item" onclick="navigateTo('my-appointments')">
+                <div class="left">
+                  <div class="icon-box">📅</div>
+                  <div>
+                    <h5>Appointment History</h5>
+                    <p>Track confirmed & previous visits</p>
+                  </div>
+                </div>
+                <span>→</span>
+              </a>
+
+              <a href="#patient-profile" class="quick-action-item" onclick="navigateTo('patient-profile')">
+                <div class="left">
+                  <div class="icon-box">👤</div>
+                  <div>
+                    <h5>Patient Profile</h5>
+                    <p>Manage contact & demographics</p>
+                  </div>
+                </div>
+                <span>→</span>
+              </a>
+
+              <a href="#doctors" class="quick-action-item" onclick="navigateTo('doctors')">
+                <div class="left">
+                  <div class="icon-box">🩺</div>
+                  <div>
+                    <h5>Consult a Specialist</h5>
+                    <p>Explore 10 medical departments</p>
+                  </div>
+                </div>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW: HEALTH ASSESSMENT QUESTIONNAIRE -->
+    <section id="view-assessment" class="spa-view">
+      <div class="assessment-container">
+        <!-- Progress Bar Card -->
+        <div class="assessment-progress-card">
+          <div class="assessment-meta-row">
+            <div class="assessment-title-text">
+              <span>🩺</span> Health Assessment
+            </div>
+            <div class="assessment-step-count" id="assessment-step-display">
+              Question 1 of 6
+            </div>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="assessment-progress-bar" style="width: 16%;"></div>
+          </div>
+          <div style="font-size: 0.75rem; color: var(--c-steel);">
+            Please provide accurate answers so we can assess appointment urgency.
+          </div>
+        </div>
+
+        <!-- Question Box -->
+        <div class="question-box">
+          <h2 class="question-headline" id="assessment-question-title">Loading Question...</h2>
+          <p class="question-subtext" id="assessment-question-subtext">Subtitle info</p>
+
+          <div class="options-list" id="assessment-options-list">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="assessment-nav">
+          <button class="btn btn-secondary" id="assessment-prev-btn" onclick="assessmentPrev()">
+            ← Previous
+          </button>
+          <button class="btn btn-primary" id="assessment-next-btn" onclick="assessmentNext()">
+            Next →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW: ASSESSMENT PROCESSING PAGE -->
+    <section id="view-assessment-processing" class="spa-view">
+      <div class="processing-card">
+        <div class="pulse-radar-container">
+          <div class="pulse-circle"></div>
+          <div class="pulse-circle pulse-circle-2"></div>
+          <div class="pulse-center-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </div>
+        </div>
+        <h2>Analysing your responses...</h2>
+        <p>Please wait while we determine your appointment priority based on your clinical assessment answers.</p>
+        <div class="processing-steps-indicator">
+          <div class="indicator-dot"></div>
+          <div class="indicator-dot"></div>
+          <div class="indicator-dot"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW: ASSESSMENT RESULT PAGE -->
+    <section id="view-assessment-result" class="spa-view">
+      <div class="result-card-wrap">
+        <div class="result-card" id="assessment-result-card">
+          <!-- Rendered by JS based on evaluated priority -->
+        </div>
+      </div>
+    </section>
+
+
+    <!-- VIEW: MY APPOINTMENTS -->
+    <section id="view-my-appointments" class="spa-view">
+      <div class="appointments-page-wrap">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2 style="font-size: 2rem; font-weight: 800; color: var(--c-navy);">My Appointments</h2>
+            <p style="color: var(--text-muted); font-size: 0.9375rem;">Manage your active bookings and review past consultation history.</p>
+          </div>
+          <button class="btn btn-primary" onclick="navigateTo('assessment')">
+            + New Appointment
+          </button>
+        </div>
+
+        <!-- Filter tabs -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+          <button class="btn btn-primary btn-sm apt-tab-btn" data-filter="all" onclick="filterMyAppointments('all')">All</button>
+          <button class="btn btn-secondary btn-sm apt-tab-btn" data-filter="confirmed" onclick="filterMyAppointments('confirmed')">Upcoming</button>
+          <button class="btn btn-secondary btn-sm apt-tab-btn" data-filter="completed" onclick="filterMyAppointments('completed')">Completed</button>
+          <button class="btn btn-secondary btn-sm apt-tab-btn" data-filter="cancelled" onclick="filterMyAppointments('cancelled')">Cancelled</button>
+        </div>
+
+        <div id="my-appointments-list">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW: PATIENT PROFILE -->
+    <section id="view-patient-profile" class="spa-view">
+      <div class="profile-wrap">
+        <div class="profile-card">
+          <div class="profile-header-banner">
+            <div class="profile-avatar-box" id="prof-avatar-letter">J</div>
+            <div>
+              <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--c-navy);">Patient Profile</h3>
+              <p style="color: var(--c-steel); font-size: 0.875rem;">CarePoint Medical Record #CP-PT-8821</p>
+            </div>
+          </div>
+
+          <form onsubmit="savePatientProfileForm(event)">
+            <div class="form-group">
+              <label for="prof-name">Full Legal Name</label>
+              <input type="text" id="prof-name" class="form-input" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="prof-email">Email Address</label>
+                <input type="email" id="prof-email" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="prof-phone">Phone Number</label>
+                <input type="tel" id="prof-phone" class="form-input" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="prof-age">Age</label>
+                <input type="number" id="prof-age" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="prof-gender">Gender</label>
+                <select id="prof-gender" class="form-select">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+              <button type="submit" class="btn btn-primary">Save Profile Changes</button>
+              <button type="button" class="btn btn-secondary" onclick="showToast('Password change link sent to email.')">Change Password</button>
+              <button type="button" class="btn btn-ghost" onclick="handleLogout()">Logout</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         DOCTOR PORTAL (Dedicated interface)
+         ========================================================================= -->
+
+    <!-- VIEW: DOCTOR LOGIN -->
+    <section id="view-doctor-login" class="spa-view">
+      <div class="auth-wrapper">
+        <div class="auth-card">
+          <div class="auth-header">
+            <span class="badge ice" style="margin-bottom: 0.75rem;">Physician Access Only</span>
+            <h2>Doctor Portal</h2>
+            <p>Manage your appointments and patient schedule.</p>
+          </div>
+
+          <form onsubmit="handleDoctorLogin(event)">
+            <div class="form-group">
+              <label for="doc-login-id">Email / Doctor ID</label>
+              <input type="text" id="doc-login-id" class="form-input" placeholder="e.g. doctor1@hospital.com" value="doctor1@hospital.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="doc-login-pass">Password</label>
+              <input type="password" id="doc-login-pass" class="form-input" placeholder="Enter password" value="doctor123" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 1rem;">
+              Sign In to Portal
+            </button>
+          </form>
+
+          <div class="auth-demo-shortcut">
+            <span>Demo: Dr. Meera Iyer (Cardiologist)</span>
+            <button class="btn btn-secondary btn-sm" onclick="handleDoctorLogin()">Auto Fill & Sign In</button>
+          </div>
+
+          <div class="auth-footer">
+            <a href="#home" onclick="navigateTo('home')">← Back to Patient Public Portal</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW: DOCTOR DASHBOARD & PORTAL -->
+    <section id="view-doctor-dashboard" class="spa-view">
+      <div class="doc-portal-layout">
+        <!-- Doctor Sidebar -->
+        <aside class="doc-sidebar">
+          <div class="doc-sidebar-header">
+            <h4>CarePoint Portal</h4>
+            <p>Physician Workstation</p>
+          </div>
+
+          <ul class="doc-nav-list">
+            <li class="doc-nav-item active" id="doc-nav-dashboard">
+              <button onclick="switchDoctorTab('dashboard')">
+                <span>📊</span> Dashboard
+              </button>
+            </li>
+            <li class="doc-nav-item" id="doc-nav-appointments">
+              <button onclick="switchDoctorTab('appointments')">
+                <span>📅</span> Appointments
+              </button>
+            </li>
+            <li class="doc-nav-item" id="doc-nav-availability">
+              <button onclick="switchDoctorTab('availability')">
+                <span>⏰</span> Availability
+              </button>
+            </li>
+            <li class="doc-nav-item" id="doc-nav-profile">
+              <button onclick="switchDoctorTab('profile')">
+                <span>👤</span> Profile
+              </button>
+            </li>
+          </ul>
+
+          <div style="border-top: 1px solid var(--surface-border); padding-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <button class="btn btn-ghost btn-sm" style="justify-content: flex-start;" onclick="navigateTo('home')">
+              ← Public Home
+            </button>
+            <button class="btn btn-ghost btn-sm" style="justify-content: flex-start; color: var(--urgency-red);" onclick="handleLogout()">
+              Logout
+            </button>
+          </div>
+        </aside>
+
+        <!-- Doctor Main Pane -->
+        <div class="doc-main-content">
+          <!-- Subview: Dashboard -->
+          <div id="doc-view-dashboard">
+            <div class="doc-top-bar">
+              <div>
+                <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--c-navy);">Good morning, Dr. Iyer</h1>
+                <p style="color: var(--c-steel);">Lead Cardiologist • Department of Cardiology</p>
+              </div>
+              <span class="badge ice">Hospital Date: 10 Nov 2026</span>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div>
+                  <div class="val" id="doc-stat-today">8</div>
+                  <div class="label">Today's Appointments</div>
+                </div>
+                <div style="font-size: 2rem;">📋</div>
+              </div>
+
+              <div class="stat-card">
+                <div>
+                  <div class="val">14</div>
+                  <div class="label">Upcoming Slots</div>
+                </div>
+                <div style="font-size: 2rem;">🗓️</div>
+              </div>
+
+              <div class="stat-card">
+                <div>
+                  <div class="val">26</div>
+                  <div class="label">Completed Consultations</div>
+                </div>
+                <div style="font-size: 2rem;">✅</div>
+              </div>
+            </div>
+
+            <!-- Today's Appointments Table -->
+            <div class="data-table-wrap">
+              <div style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--surface-border); display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--c-navy);">Today's Appointments</h3>
+                <span class="badge neutral">Priority Sorted</span>
+              </div>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Patient</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="doc-today-table-body">
+                  <!-- Rendered by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Subview: All Appointments -->
+          <div id="doc-view-appointments" style="display: none;">
+            <div class="doc-top-bar">
+              <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--c-navy);">Patient Appointments</h1>
+            </div>
+            <div id="doc-all-appointments-list">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <!-- Subview: Doctor Availability -->
+          <div id="doc-view-availability" style="display: none;">
+            <div class="doc-top-bar">
+              <div>
+                <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--c-navy);">Doctor Availability</h1>
+                <p style="color: var(--c-steel);">Configure your active working days, clinical consultation hours, and OPD quotas.</p>
+              </div>
+              <button class="btn btn-primary" onclick="showToast('Availability settings published.')">Save Changes</button>
+            </div>
+
+            <div class="card" style="margin-bottom: 2rem;">
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--c-navy); margin-bottom: 1.25rem;">Working Days & Shift Times</h3>
+              <div id="doc-availability-days">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Subview: Doctor Profile -->
+          <div id="doc-view-profile" style="display: none;">
+            <div class="doc-top-bar">
+              <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--c-navy);">Doctor Profile</h1>
+            </div>
+
+            <div class="card" style="max-width: 680px;">
+              <form onsubmit="saveDoctorProfileForm(event)">
+                <div class="form-group">
+                  <label for="doc-prof-name">Doctor Name</label>
+                  <input type="text" id="doc-prof-name" class="form-input" required>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="doc-prof-spec">Specialisation</label>
+                    <input type="text" id="doc-prof-spec" class="form-input" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="doc-prof-dept">Hospital Department</label>
+                    <input type="text" id="doc-prof-dept" class="form-input" required>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="doc-prof-qual">Qualifications</label>
+                    <input type="text" id="doc-prof-qual" class="form-input" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="doc-prof-exp">Years of Experience</label>
+                    <input type="number" id="doc-prof-exp" class="form-input" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="doc-prof-phone">Direct Line</label>
+                  <input type="text" id="doc-prof-phone" class="form-input" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">
+                  Update Profile Details
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>Smart Doctor</h3>
+          <p class="sub">by CarePoint Hospital</p>
+          <p class="desc">
+            Smart Healthcare. Better Care. Right on Time. Digital hospital appointment triage platform designed for compassionate, modern care delivery.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#home" onclick="navigateTo('home')">Home</a></li>
+            <li><a href="#departments" onclick="navigateTo('departments')">Departments</a></li>
+            <li><a href="#doctors" onclick="navigateTo('doctors')">Specialists</a></li>
+            <li><a href="#about" onclick="navigateTo('about')">About Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Portals</h4>
+          <ul class="footer-links">
+            <li><a href="#patient-login" onclick="navigateTo('patient-login')">Patient Sign In</a></li>
+            <li><a href="#patient-signup" onclick="navigateTo('patient-signup')">Create Account</a></li>
+            <li><a href="#assessment" onclick="navigateTo('assessment')">Book an Appointment</a></li>
+            <li><a href="#doctor-login" onclick="navigateTo('doctor-login')">Doctor Portal</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>CarePoint Hospital</h4>
+          <div class="footer-contact-item">
+            <span>📍</span>
+            <span>Plot 14, Institutional Area, Saket, New Delhi – 110017</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>📞</span>
+            <span>Emergency 24/7: 1800-274-9999</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>✉️</span>
+            <span>appointments@carepoint.hospital</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-disclaimer">
+          <strong>Medical Notice:</strong> Smart Doctor is a prototype appointment-prioritisation system and is not a substitute for professional medical advice or emergency services. In case of life-threatening conditions, please dial your local emergency services immediately.
+        </div>
+        <div class="footer-legal">
+          <span>© 2026 CarePoint Hospital. All rights reserved.</span>
+          <span>CarePoint Digital Health Initiative</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal System -->
+  <div class="modal-overlay" id="details-modal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>CarePoint Hospital</h3>
+        <button onclick="closeModal()" aria-label="Close" style="font-size: 1.5rem; line-height: 1; color: var(--c-steel);">&times;</button>
+      </div>
+      <div class="modal-body" id="details-modal-content">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-menu-drawer');
+      if (drawer) {
+        drawer.style.display = drawer.style.display === 'none' ? 'block' : 'none';
+      }
+    }
+
+    // Dynamic renderers for dedicated views
+    document.addEventListener('DOMContentLoaded', () => {
+      const allDeptsGrid = document.getElementById('all-departments-grid');
+      if (allDeptsGrid) {
+        allDeptsGrid.innerHTML = DEPARTMENTS.map(dept => `
+          <div class="dept-card">
+            <div>
+              <div class="dept-icon-box">${Icons[dept.icon] || Icons['stethoscope']}</div>
+              <h3>${dept.name}</h3>
+              <p>${dept.description}</p>
+            </div>
+            <div>
+              <div class="dept-meta">
+                <span>${dept.specialistsCount} Specialists</span>
+                <span>${dept.floor}</span>
+              </div>
+              <a href="#doctors" onclick="navigateTo('doctors')" class="dept-link">
+                View Specialists <span>→</span>
+              </a>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const allDocsGrid = document.getElementById('all-doctors-grid');
+      if (allDocsGrid) {
+        allDocsGrid.innerHTML = DOCTORS.map(doc => `
+          <div class="doc-card">
+            <div class="doc-card-top">
+              <span class="doc-avail-badge">
+                <span class="badge-dot" style="background-color: #059669"></span>
+                ${doc.availableStatus}
+              </span>
+              <img src="${doc.avatar}" alt="${doc.name}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80';">
+            </div>
+            <div class="doc-card-body">
+              <h3 class="doc-name">${doc.name}</h3>
+              <p class="doc-specialty">${doc.specialisation}</p>
+              <div class="doc-qual-exp">
+                <span>🎓 ${doc.qualification}</span>
+                <span>⏳ ${doc.experienceYears} yrs</span>
+              </div>
+              <p class="doc-bio">${doc.bio}</p>
+              <div class="doc-card-footer">
+                <button class="btn btn-secondary btn-sm btn-block" onclick="openDoctorModal('${doc.id}')">View Profile</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+    });
+  </script>
+</body>
+</html>

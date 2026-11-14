@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+venv/
+env/
+ENV/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+
+# ML Department (kept separate in Ishika's repo)
+m1-model/
+
+# Internal integration specs
+INTEGRATION_SPEC.md
+
+
